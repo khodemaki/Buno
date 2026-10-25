@@ -1,7 +1,8 @@
 {
-  "name": "restaureant-pos",
+  "name": "buno",
   "version": "1.0.0",
-  "description": "",
+  "description": "Persian-language restaurant POS desktop app with thermal receipt printing",
+  "author": "khodemaki",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
