@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: Tahoma, sans-serif;
+    overflow: hidden;
+    background: #10b981; 
+    -webkit-app-region: drag;
+  }
+  .splash {
+    width: 100%; height: 100%;
+    position: relative;
+  }
+  .splash-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    display: none;
+  }
+  .logo-wrap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+  }
+  .logo-wrap img {
+    width: 200px;
+    display: none;
+  }
+  .bottom-left {
+    position: absolute;
+    bottom: 22px;
+    left: 24px;
+    text-align: left;
+    direction: ltr;
+    z-index: 1;
+  }
+  .bottom-left .app-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2f4a3f;
+  }
+  .bottom-left .credit {
+    font-size: 10px;
+    color: #4c6b5c;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="splash">
+    <img id="bg-img" class="splash-bg" alt="">
+    <div class="logo-wrap">
+      <img id="logo-img" alt="logo">
+    </div>
+    <div class="bottom-left">
+      <div class="app-name">Mamanjooni fastfood</div>
+      <div class="credit">Designed by [Maki]</div>
+    </div>
+  </div>
+
+  <script>
+    window.splashApi.onImages((data) => {
+      if (data.bg) {
+        const bg = document.getElementById('bg-img');
+        bg.src = data.bg;
+        bg.style.display = 'block';
+      }
+      if (data.logo) {
+        const logo = document.getElementById('logo-img');
+        logo.src = data.logo;
+        logo.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

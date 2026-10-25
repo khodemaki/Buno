@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>Buno system</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand">
+      <span id="brand-icon"></span>
+      <span class="brand-name"> Buno </span>
+    </div>
+
+    <div class="header-actions">
+      <button id="manage-open-btn" class="btn btn-primary">
+        <span id="manage-btn-icon"></span> مدیریت محصولات
+      </button>
+
+      <button id="settings-open-btn" class="btn btn-ghost" data-icon-name="settings">تنظیمات </button>
+
+      <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="theme-slider">
+          <span class="theme-icon" id="sun-icon"></span>
+          <span class="theme-icon" id="moon-icon"></span>
+        </span>
+      </label>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="pos-layout">
+
+      <div class="pos-products-side">
+        <div id="pos-category-bar" class="pos-category-bar"></div>
+        <div id="pos-product-grid" class="pos-product-grid"></div>
+      </div>
+
+      <aside class="pos-cart-side">
+        <h3>سبد سفارش</h3>
+        <div id="cart-list" class="cart-list"></div>
+
+        <label class="takeaway-check">
+          <input type="checkbox" id="takeaway-toggle">
+          <span>بیرون‌بر</span>
+        </label>
+
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>جمع کل</span>
+            <span id="cart-total">۰ تومان</span>
+          </div>
+        </div>
+
+        <button id="register-order-btn" class="btn btn-primary btn-block">
+          <span id="print-btn-icon"></span> ثبت و صدور فیش
+        </button>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- =====  مدیریت محصولات ===== -->
+  <div id="manage-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>مدیریت کتگوری‌ها و محصولات</h2>
+        <button id="manage-close-btn" class="btn-icon" data-icon-name="x"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <section class="panel-col category-col">
+          <h3>کتگوری‌ها</h3>
+          <div id="category-list" class="scroll-list"></div>
+          <form id="category-add-form" class="inline-form">
+            <input type="text" id="new-category-name" placeholder="نام کتگوری جدید" required>
+            <button type="submit" class="btn btn-primary btn-sm" data-icon-name="plus"></button>
+          </form>
+        </section>
+
+        <section class="panel-col product-col">
+          <h3 id="product-panel-title">محصولات</h3>
+          <div id="product-list" class="scroll-list"></div>
+          <form id="product-add-form" class="inline-form hidden">
+            <input type="text" id="new-product-name" placeholder="نام محصول" required>
+            <input type="number" id="new-product-price" placeholder="قیمت (تومان)" required min="0">
+            <button type="submit" class="btn btn-primary btn-sm" data-icon-name="plus"></button>
+          </form>
+          <p id="product-empty-hint" class="hint-text"></p>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =====  تنظیمات فیش ===== --><div id="settings-modal" class="modal-overlay">
+  <div class="modal-box settings-box">
+    <div class="modal-header">
+      <h2>تنظیمات فیش و رستوران</h2>
+      <button id="settings-close-btn" class="btn-icon" data-icon-name="x"></button>
+    </div>
+    <div class="modal-body settings-form-body">
+      <form id="settings-form" class="settings-form">
+
+        <label>لوگو</label>
+        <div class="logo-upload">
+          <img id="logo-preview" class="logo-preview hidden">
+          <label for="logo-input" class="btn btn-ghost btn-sm" data-icon-name="image">
+            انتخاب تصویر
+          </label>
+          <input type="file" id="logo-input" accept="image/*" class="hidden">
+        </div>
+
+        <label>نام رستوران</label>
+        <input type="text" id="setting-name">
+
+        <label>آدرس</label>
+        <input type="text" id="setting-address">
+
+        <label>شماره تلفن</label>
+        <input type="text" id="setting-phone">
+
+        <label>پیام پایین فیش</label>
+        <input type="text" id="setting-footer">
+
+        <label>درصد مالیات و عوارض</label>
+        <input type="number" id="setting-tax" min="0" max="100">
+
+        <label>قالب فیش</label>
+        <select id="setting-template" style="padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-family:inherit;font-size:13px;">
+        <option value="classic">قالب دو</option>
+        <option value="creative">قالب یک</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary btn-block">ذخیره</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <script src="icons.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

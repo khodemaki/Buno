@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>فیش</title>
+<style>
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+  @font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  #receipt {
+    width: 576px; 
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    color: #111;
+    padding: 36px 30px 44px;
+  }
+  .center { text-align: center; }
+  .logo { max-width: 260px; max-height: 130px; margin: 0 auto 16px; display: block; }
+  .r-name { font-size: 38px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .r-info { font-size: 21px; margin-bottom: 4px; color: #444; }
+  .divider { border-top: 2.5px dashed #222; margin: 20px 0; }
+  .divider.solid { border-top: 3px solid #111; }
+  .meta-row { display: flex; justify-content: space-between; font-size: 23px; margin-bottom: 9px; color: #222; }
+  .takeaway-badge {
+    display: inline-block; background: #fff; color: #111; border: 3px solid #111; border-radius: 12px;
+    padding: 8px 26px; font-weight: 700; font-size: 24px; margin: 16px 0; letter-spacing: 0.5px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 23px; }
+  th { text-align: right; border-bottom: 3px solid #111; padding-bottom: 12px; font-size: 21px; font-weight: 700; }
+  th.num, td.num { text-align: center; }
+  th.price, td.price { text-align: left; white-space: nowrap; }
+  td { padding: 12px 0; vertical-align: top; word-break: break-word; border-bottom: 1.5px dotted #ccc; }
+  td.name { max-width: 280px; font-weight: 500; }
+  .totals { margin-top: 16px; font-size: 23px; }
+  .totals-row { display: flex; justify-content: space-between; padding: 5px 0; color: #333; }
+  .grand-total {
+    font-weight: 700; font-size: 29px; border-top: 3px solid #111;
+    margin-top: 14px; padding-top: 16px; color: #000;
+  }
+  .footer { text-align: center; margin-top: 28px; font-size: 21px; color: #555; }
+  .footer .icon-line { font-size: 24px; margin-top: 6px; }
+
+  .kitchen-title {
+    text-align: center; font-size: 34px; font-weight: 700; margin-bottom: 14px;
+    border: 3px solid #111; border-radius: 12px; padding: 10px 0;
+  }
+  .kitchen-meta { font-size: 23px; margin-bottom: 14px; text-align: center; color: #333; }
+  .kitchen-item {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 32px; font-weight: 700; padding: 16px 6px; border-bottom: 2px dashed #999;
+  }
+  .kitchen-item .k-qty {
+    background: #fff; color: #111; border: 3px solid #111; border-radius: 10px; padding: 4px 16px; font-size: 27px; font-weight: 700;
+  }
+  .kitchen-total {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 32px; font-weight: 700; margin-top: 10px; padding: 10px 4px;
+  }
+
+  /* ===== قالب دو ===== */
+  .c-slice {
+    width: 0; height: 0; margin: 0 auto 10px;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: 36px solid #111;
+    position: relative;
+  }
+  .c-slice::after {
+    content: ''; position: absolute; top: -36px; left: -22px;
+    width: 44px; height: 10px;
+    background:
+      radial-gradient(circle at 10px 5px, #fff 3px, transparent 3.5px),
+      radial-gradient(circle at 25px 3px, #fff 2.5px, transparent 3px),
+      radial-gradient(circle at 34px 6px, #fff 2.5px, transparent 3px);
+  }
+  .c-name { font-size: 42px; font-weight: 700; text-align: center; letter-spacing: 0.5px; }
+  .c-tagline { font-size: 18px; text-align: center; color: #555; margin-top: 2px; letter-spacing: 2px; }
+  .c-info { font-size: 20px; text-align: center; color: #444; margin-top: 6px; }
+  .c-dotline {
+    text-align: center; letter-spacing: 6px; font-size: 20px; color: #111;
+    margin: 22px 0; overflow: hidden; white-space: nowrap;
+  }
+  .c-meta-box {
+    border: 2.5px dashed #111; border-radius: 14px; padding: 14px 18px; margin-bottom: 18px;
+  }
+  .c-meta-row { display: flex; justify-content: space-between; font-size: 22px; padding: 3px 0; }
+  .c-meta-row b { font-weight: 700; }
+  .c-section-label {
+    font-size: 20px; font-weight: 700; color: #111; margin: 18px 0 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .c-section-label::before, .c-section-label::after {
+    content: ''; flex: 1; border-top: 2px dotted #999;
+  }
+  .c-item-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1.5px dotted #ccc;
+  }
+  .c-item-left { display: flex; align-items: center; gap: 12px; }
+  .c-qty-circle {
+    width: 40px; height: 40px; border: 2.5px solid #111; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; flex-shrink: 0;
+  }
+  .c-item-name { font-size: 24px; font-weight: 700; }
+  .c-item-price { font-size: 22px; font-weight: 500; white-space: nowrap; }
+  .c-totals { margin-top: 18px; font-size: 22px; }
+  .c-totals-row { display: flex; justify-content: space-between; padding: 4px 0; color: #333; }
+  .c-grand-box {
+    border: 3px solid #111; border-radius: 14px; padding: 16px 18px; margin-top: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .c-grand-box .label { font-size: 22px; font-weight: 700; }
+  .c-grand-box .amount { font-size: 32px; font-weight: 700; }
+  .c-footer { text-align: center; margin-top: 30px; }
+  .c-footer .stars { font-size: 20px; letter-spacing: 8px; margin-bottom: 8px; }
+  .c-footer .msg { font-size: 22px; font-weight: 700; }
+  .c-footer .sub { font-size: 18px; color: #666; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <div id="receipt"></div>
+  <script src="receipt-renderer.js"></script>
+</body>
+</html>

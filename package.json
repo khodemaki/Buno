@@ -1,0 +1,58 @@
+{
+  "name": "restaureant-pos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^43.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "electron-pos-printer": "^1.4.0",
+    "jalali-moment": "^3.3.11",
+    "lucide": "^1.28.0",
+    "lucide-static": "^1.28.0",
+    "node-thermal-printer": "^4.5.0",
+    "pdf-to-printer": "^5.8.0"
+  },
+  "build": {
+    "appId": "com.restaurant.pos",
+    "productName": "RestaurantPOS",
+    "asarUnpack": [
+      "assets/**",
+      "build/**",
+      "fonts/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Maki",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "installerSidebar": "build/sidebar.bmp",
+      "uninstallerSidebar": "build/sidebar.bmp",
+      "artifactName": "RestaurantPOS-Setup-${version}.${ext}"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/electron-builder",
+      "!node_modules/electron/dist"
+    ]
+  }
+}
