@@ -1,0 +1,29 @@
+{
+  "settings": {
+    "restaurantName": "",
+    "address": "",
+    "phone": "",
+    "logoPath": "",
+    "footerMessage": "",
+    "taxPercent": 0,
+    "paperWidth": 80,
+    "theme": "dark",
+    "logoData": "",
+    "receiptTemplate": "creative"
+  },
+  "categories": [
+    {
+      "id": "272d89ef-fc04-48b9-8c12-ad44d839e385",
+      "name": "d"
+    }
+  ],
+  "products": [
+    {
+      "id": "ab46157b-48fd-4a9b-b34d-6baea144e35a",
+      "categoryId": "272d89ef-fc04-48b9-8c12-ad44d839e385",
+      "name": "test",
+      "price": 0
+    }
+  ],
+  "orderCounter": 0
+}
